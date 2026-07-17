@@ -1,0 +1,12 @@
+{
+  "name": "Calculator Taxe Vamale",
+  "short_name": "Calc Vamal",
+  "description": "Calculator taxe vamale Trade Flow SRL — garanție izolată & import definitiv",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#16283c",
+  "icons": [
+    { "src": "icon.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
