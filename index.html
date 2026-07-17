@@ -17,6 +17,19 @@
     --navy:#16283c; --navy2:#24405e; --accent:#2f5d8a;
     --bg:#eef1f5; --card:#ffffff; --text:#1a2330; --muted:#6b7686;
     --line:#e3e8ee; --green:#1f7a4d; --red:#b3372f; --radius:16px;
+    --input:#fafbfc; --input-focus:#ffffff; --article:#fcfdfe;
+    --calc-bg:#f0f4f8; --calc-tx:#24405e; --dash:#c3ccd7;
+    --del-bg:#fdeceb; --bar-bg:rgba(238,241,245,.86);
+    --seg-tx:#6b7686; --accent-tx:#2f5d8a;
+    color-scheme:light;
+  }
+  html[data-theme="dark"]{
+    --bg:#0d1520; --card:#16202c; --text:#e8edf3; --muted:#93a3b8;
+    --line:#263344; --input:#101a26; --input-focus:#0d1724; --article:#121c28;
+    --calc-bg:#1b2938; --calc-tx:#a9c6e4; --dash:#33455c;
+    --del-bg:#3a2124; --bar-bg:rgba(13,21,32,.87);
+    --seg-tx:#93a3b8; --accent-tx:#7fb2e5;
+    color-scheme:dark;
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html{font-size:16px}
@@ -32,6 +45,11 @@
     border-radius:0 0 26px 26px;
   }
   .app-header .brand{display:flex;align-items:center;gap:12px}
+  .theme-btn{
+    margin-left:auto;width:42px;height:42px;border-radius:12px;flex:none;
+    background:rgba(255,255,255,.14);border:0;color:#fff;font-size:1.25rem;
+    cursor:pointer;font-family:inherit;line-height:1;
+  }
   .app-header .brand img{width:44px;height:auto;background:#fff;border-radius:11px;padding:4px}
   .app-header h1{font-size:1.2rem;font-weight:700}
   .app-header p{font-size:.78rem;opacity:.72;margin-top:1px}
@@ -39,7 +57,7 @@
   .segmented{display:flex;background:var(--card);border-radius:14px;padding:4px;box-shadow:0 6px 20px rgba(22,40,60,.12)}
   .segmented button{
     flex:1;border:0;background:transparent;padding:11px 6px;border-radius:11px;
-    font-size:.84rem;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit;line-height:1.25;
+    font-size:.84rem;font-weight:600;color:var(--seg-tx);cursor:pointer;font-family:inherit;line-height:1.25;
   }
   .segmented button.active{background:var(--navy);color:#fff;box-shadow:0 2px 8px rgba(22,40,60,.35)}
   .card{background:var(--card);border-radius:var(--radius);margin:13px 14px;padding:17px 15px;box-shadow:0 2px 10px rgba(22,40,60,.06)}
@@ -51,9 +69,9 @@
   .field input,.field select{
     width:100%;border:1.5px solid var(--line);border-radius:11px;
     padding:11px 12px;font-size:1rem;font-family:inherit;color:var(--text);
-    background:#fafbfc;outline:none;-webkit-appearance:none;appearance:none;min-height:47px;
+    background:var(--input);outline:none;-webkit-appearance:none;appearance:none;min-height:47px;
   }
-  .field input:focus,.field select:focus{border-color:var(--accent);background:#fff}
+  .field input:focus,.field select:focus{border-color:var(--accent);background:var(--input-focus)}
   .field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7686' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:30px}
   input[type="date"]{min-height:47px}
   .row2{display:flex;gap:10px}
@@ -63,7 +81,13 @@
   /* rates */
   .rates{display:flex;gap:8px}
   .rates .field{flex:1}
-  .rates .fixed input{color:var(--muted);background:#f2f4f7}
+  .rates .fixed input{color:var(--muted);background:var(--calc-bg)}
+  .lbl-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+  .lbl-row label{margin-bottom:0 !important}
+  .taric{font-size:.68rem;font-weight:700;color:var(--accent-tx);text-decoration:none;
+    padding:2.5px 8px;border:1.2px solid var(--line);border-radius:7px;
+    background:transparent;font-family:inherit;cursor:pointer;white-space:nowrap}
+  h2 .taric{margin-left:auto;letter-spacing:0;text-transform:none}
   .hint{font-size:.71rem;color:var(--muted);margin-top:6px;line-height:1.45}
   /* cost toggles */
   .cost-row{border:1.5px solid var(--line);border-radius:13px;padding:12px;margin-bottom:12px}
@@ -77,13 +101,14 @@
   .cost-fields .field{flex:2;margin-bottom:0}
   .cost-fields .field.cur{flex:1}
   /* articles */
-  .article{border:1.5px solid var(--line);border-radius:14px;padding:13px 12px 11px;margin-bottom:13px;background:#fcfdfe}
+  .article{border:1.5px solid var(--line);border-radius:14px;padding:13px 12px 11px;margin-bottom:13px;background:var(--article)}
   .article-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}
   .article-head .num{font-size:.74rem;font-weight:700;color:#fff;background:var(--accent);border-radius:8px;padding:3px 10px}
-  .btn-del{border:0;background:#fdeceb;color:var(--red);font-weight:600;font-size:.74rem;border-radius:8px;padding:5px 10px;cursor:pointer;font-family:inherit}
-  .art-calc{display:grid;grid-template-columns:1fr 1fr;gap:5px 10px;background:#f0f4f8;border-radius:10px;padding:9px 12px;margin-top:9px;font-size:.72rem;color:var(--navy2)}
+  .btn-del{border:0;background:var(--del-bg);color:var(--red);font-weight:600;font-size:.74rem;border-radius:8px;padding:5px 10px;cursor:pointer;font-family:inherit}
+  html[data-theme="dark"] .btn-del{color:#f2938c}
+  .art-calc{display:grid;grid-template-columns:1fr 1fr;gap:5px 10px;background:var(--calc-bg);border-radius:10px;padding:9px 12px;margin-top:9px;font-size:.72rem;color:var(--calc-tx)}
   .art-calc span b{font-size:.8rem;display:block}
-  .btn-add{width:100%;border:2px dashed #c3ccd7;background:transparent;color:var(--accent);font-weight:700;font-size:.9rem;padding:12px;border-radius:13px;cursor:pointer;font-family:inherit}
+  .btn-add{width:100%;border:2px dashed var(--dash);background:transparent;color:var(--accent-tx);font-weight:700;font-size:.9rem;padding:12px;border-radius:13px;cursor:pointer;font-family:inherit}
   /* totals */
   .totals{background:linear-gradient(160deg,var(--navy),var(--navy2));color:#fff}
   .totals h2{color:rgba(255,255,255,.65)}
@@ -118,8 +143,13 @@
   .print-bar{
     position:fixed;left:0;right:0;bottom:0;
     padding:11px 16px calc(11px + env(safe-area-inset-bottom));
-    background:rgba(238,241,245,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    background:var(--bar-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   }
+  html[data-theme="dark"] .btn-print{background:var(--accent)}
+  html[data-theme="dark"] .segmented button.active{background:var(--accent)}
+  html[data-theme="dark"] .hist-badge.garantie{background:#1d3327;color:#7fd0a2}
+  html[data-theme="dark"] .hist-badge.import{background:#1c2f47;color:#7fb2e5}
+  html[data-theme="dark"] .hist-del{color:#3d4f66}
   .btn-print{
     width:100%;border:0;background:var(--navy);color:#fff;font-weight:700;font-size:1.02rem;
     padding:16px;border-radius:15px;cursor:pointer;font-family:inherit;
@@ -144,6 +174,7 @@
         <h1>Calculator Taxe Vamale</h1>
         <p>Trade Flow SRL — calcul &amp; generare PDF</p>
       </div>
+      <button type="button" class="theme-btn" id="btnTheme" aria-label="Comută tema">☾</button>
     </div>
   </header>
 
@@ -173,7 +204,8 @@
   </section>
 
   <section class="card">
-    <h2><span class="dot"></span>Curs valutar (RON)</h2>
+    <h2><span class="dot"></span>Curs valutar (RON)
+      <a class="taric" href="https://www.customs.ro/info-publice/curs-valutar/pentru-determinarea-valorii-in-vama" target="_blank" rel="noopener">Curs vamal ↗</a></h2>
     <div class="rates">
       <div class="field"><label>USD</label><input type="text" id="rUSD" inputmode="decimal" placeholder="4,5101"></div>
       <div class="field"><label>EUR</label><input type="text" id="rEUR" inputmode="decimal" placeholder="5,0752"></div>
@@ -251,14 +283,52 @@ var PDF_FONTS={"reg":{"b64":"AAEAAAAMAIAAAwBAR1BPU0R2THUAACwcAAAAIEdTVUIfSCdrAAA
 (function(){
 "use strict";
 var PW=595.28, PH=841.89;                 // A4 portrait, points
-var NAVY=[0.086,0.157,0.235];             // #16283c
-var NAVY2=[0.184,0.365,0.541];            // #2f5d8a
-var GRAY=[0.42,0.463,0.525];              // #6b7686
-var DARK=[0.102,0.137,0.188];
-var PANEL=[0.941,0.957,0.973];            // #f0f4f8
-var PANEL2=[0.957,0.965,0.976];
-var ZEBRA=[0.969,0.976,0.984];
-var LINEC=[0.874,0.898,0.925];
+function hx(h){ // "#rrggbb" -> [r,g,b] 0..1
+  return [parseInt(h.slice(1,3),16)/255,parseInt(h.slice(3,5),16)/255,parseInt(h.slice(5,7),16)/255];
+}
+var THEMES={
+  light:{
+    BG:null,                    // page background (null = white, no rect)
+    TXT:hx("#1a2330"),          // body text
+    GRA:hx("#6b7686"),          // muted text
+    TIT:hx("#16283c"),          // titles / strong navy text
+    SUB:hx("#2f5d8a"),          // secondary accent text
+    AMT:hx("#16283c"),          // big amount text
+    PAN:hx("#f0f4f8"),          // amount card fill
+    PAN2:hx("#f4f6f9"),         // meta panel fill
+    ZEB:hx("#f7f9fb"),          // zebra row
+    LIN:hx("#dfe5ec"),          // hairlines
+    BAND:hx("#16283c"),         // top/bottom page bands
+    ACC:hx("#16283c"),          // card left accent
+    TBH:hx("#16283c"),          // table header fill
+    TOTB:hx("#16283c"),         // total band fill
+    TOTR:hx("#e9eef4"),         // totals row fill
+    TOTAMT:hx("#9fd0ff"),       // amount in total band
+    WHT:[1,1,1],
+    LOGOPLATE:null              // plate behind logo (null = none)
+  },
+  dark:{
+    BG:hx("#0f1b29"),
+    TXT:hx("#e9eef5"),
+    GRA:hx("#9db0c6"),
+    TIT:hx("#dbe9fb"),
+    SUB:hx("#9fc6f2"),
+    AMT:hx("#9fd0ff"),
+    PAN:hx("#1b2c40"),
+    PAN2:hx("#182839"),
+    ZEB:hx("#152435"),
+    LIN:hx("#2c3f56"),
+    BAND:hx("#2f5d8a"),
+    ACC:hx("#6fa8dc"),
+    TBH:hx("#2f5d8a"),
+    TOTB:hx("#2f5d8a"),
+    TOTR:hx("#22364d"),
+    TOTAMT:hx("#cfe8ff"),
+    WHT:[1,1,1],
+    LOGOPLATE:[1,1,1]
+  }
+};
+var C=THEMES.light;   // active palette (set per buildPdf call)
 
 function b64ToBytes(b64){
   var bin=atob(b64),n=bin.length,out=new Uint8Array(n);
@@ -304,13 +374,15 @@ function tw(str,f,size){
 }
 
 function MiniPDF(){
-  this.pages=[];      // each: array of op strings
+  this.pages=[];
 }
 MiniPDF.prototype.page=function(){
-  var ops=[];this.pages.push(ops);return ops;
+  var ops=[];this.pages.push(ops);
+  if(C.BG)this.rect(ops,0,0,PW,PH,{fill:C.BG});
+  return ops;
 };
 MiniPDF.prototype.text=function(ops,str,x,yTop,o){
-  o=o||{};var f=o.f||"reg",s=o.s||10,c=o.c||DARK;
+  o=o||{};var f=o.f||"reg",s=o.s||10,c=o.c||C.TXT;
   var xx=x;
   if(o.align==="center")xx=x-tw(str,f,s)/2;
   else if(o.align==="right")xx=x-tw(str,f,s);
@@ -353,12 +425,21 @@ MiniPDF.prototype.rect=function(ops,x,yTop,w,h,o){
   ops.push(cmd);
 };
 MiniPDF.prototype.line=function(ops,x1,y1,x2,y2,o){
-  o=o||{};var c=o.c||LINEC;
+  o=o||{};var c=o.c||C.LIN;
   ops.push(f2s(c[0])+" "+f2s(c[1])+" "+f2s(c[2])+" RG "+f2s(o.lw||0.8)+" w "
     +f2s(x1)+" "+f2s(PH-y1)+" m "+f2s(x2)+" "+f2s(PH-y2)+" l S");
 };
 MiniPDF.prototype.image=function(ops,x,yTop,w,h){
   ops.push("q "+f2s(w)+" 0 0 "+f2s(h)+" "+f2s(x)+" "+f2s(PH-yTop-h)+" cm /Im1 Do Q");
+};
+MiniPDF.prototype.logo=function(ops,x,yTop,w){
+  var h=w*279/437;
+  if(C.LOGOPLATE){
+    var pad=w*0.10;
+    this.rect(ops,x-pad,yTop-pad,w+2*pad,h+2*pad,{fill:C.LOGOPLATE,r:8});
+  }
+  this.image(ops,x,yTop,w,h);
+  return h;
 };
 
 function toUnicodeCMap(f){
@@ -398,7 +479,6 @@ MiniPDF.prototype.build=function(){
   }
   push("%PDF-1.4\n%\xE2\xE3\xCF\xD3\n");
   var nPages=this.pages.length;
-  // ids: 1 catalog, 2 pages, 3-7 F1, 8-12 F2, 13 image, then per page: 14+2i page, 15+2i content
   var kids=[];
   for(var i=0;i<nPages;i++)kids.push((14+2*i)+" 0 R");
   obj(1,"<< /Type /Catalog /Pages 2 0 R >>");
@@ -438,87 +518,84 @@ MiniPDF.prototype.build=function(){
 var M=54, CW=PW-2*M;
 
 function pageChrome(pdf,ops){
-  pdf.rect(ops,0,0,PW,5,{fill:NAVY});
-  pdf.rect(ops,0,PH-5,PW,5,{fill:NAVY});
-  // footer
-  pdf.line(ops,M,PH-72,PW-M,PH-72,{c:LINEC,lw:0.8});
-  pdf.text(ops,"TRADE FLOW SRL",PW/2,PH-56,{f:"bold",s:9,c:NAVY,align:"center"});
-  pdf.text(ops,"CIF: RO22428440   ·   Reg. No. J2007000588510",PW/2,PH-43,{s:8,c:GRAY,align:"center"});
-  pdf.text(ops,"customs@tradeflow.ro   ·   +40 752 034 039",PW/2,PH-31,{s:8,c:GRAY,align:"center"});
+  pdf.rect(ops,0,0,PW,5,{fill:C.BAND});
+  pdf.rect(ops,0,PH-5,PW,5,{fill:C.BAND});
+  pdf.line(ops,M,PH-72,PW-M,PH-72,{c:C.LIN,lw:0.8});
+  pdf.text(ops,"TRADE FLOW SRL",PW/2,PH-56,{f:"bold",s:9,c:C.TIT,align:"center"});
+  pdf.text(ops,"CIF: RO22428440   ·   Reg. No. J2007000588510",PW/2,PH-43,{s:8,c:C.GRA,align:"center"});
+  pdf.text(ops,"customs@tradeflow.ro   ·   +40 752 034 039",PW/2,PH-31,{s:8,c:C.GRA,align:"center"});
 }
 
 function amountCard(pdf,ops,y,label,amount,iban){
   var h=78;
-  pdf.rect(ops,M,y,CW,h,{fill:PANEL,r:12});
-  pdf.rect(ops,M,y,5,h,{fill:NAVY,r:2.5});
-  pdf.text(ops,label,M+22,y+22,{f:"bold",s:8.5,c:GRAY});
-  pdf.text(ops,amount,M+22,y+47,{f:"bold",s:21,c:NAVY});
-  pdf.text(ops,"CONT IBAN:  "+iban,M+22,y+66,{f:"bold",s:9.5,c:DARK});
+  pdf.rect(ops,M,y,CW,h,{fill:C.PAN,r:12});
+  pdf.rect(ops,M,y,5,h,{fill:C.ACC,r:2.5});
+  pdf.text(ops,label,M+22,y+22,{f:"bold",s:8.5,c:C.GRA});
+  pdf.text(ops,amount,M+22,y+47,{f:"bold",s:21,c:C.AMT});
+  pdf.text(ops,"CONT IBAN:  "+iban,M+22,y+66,{f:"bold",s:9.5,c:C.TXT});
   return y+h;
 }
 
 function usedCurrencies(c,meta){
   var used={};
-  c.rows.forEach(function(r){if(r.cur!=="RON"&&(r.val>0||r.cur))used[r.cur]=1;});
+  c.rows.forEach(function(r){if(r.cur!=="RON")used[r.cur]=1;});
   return ["USD","EUR","GBP"].filter(function(k){return used[k]&&meta.rates[k];});
 }
 
 window.buildPdf=function(c,mode,meta){
+  C=THEMES[meta.theme==="dark"?"dark":"light"];
   var pdf=new MiniPDF();
   var ops=pdf.page();
   pageChrome(pdf,ops);
 
   // logo
-  var lw=100,lh=lw*279/437;
-  pdf.image(ops,(PW-lw)/2,32,lw,lh);
-  pdf.line(ops,M,118,PW-M,118,{c:LINEC,lw:0.8});
+  var lw=100;
+  pdf.logo(ops,(PW-lw)/2,34,lw);
+  pdf.line(ops,M,122,PW-M,122,{c:C.LIN,lw:0.8});
 
   // meta panel
-  var py=134,phh=56;
-  pdf.rect(ops,M,py,CW,phh,{fill:PANEL2,r:10});
+  var py=138,phh=56;
+  pdf.rect(ops,M,py,CW,phh,{fill:C.PAN2,r:10});
   var c1=M+18,c2=M+CW*0.48,c3=M+CW*0.70;
-  pdf.text(ops,"CĂTRE",c1,py+20,{f:"bold",s:7,c:GRAY});
-  pdf.fit(ops,(meta.catre||"—").toUpperCase(),c1,py+38,CW*0.48-30,{f:"bold",s:11,c:NAVY,min:7.5});
-  pdf.text(ops,"DATA",c2,py+20,{f:"bold",s:7,c:GRAY});
-  pdf.text(ops,meta.dateRO||"—",c2,py+38,{f:"bold",s:11,c:NAVY});
-  pdf.text(ops,"REFERINȚĂ",c3,py+20,{f:"bold",s:7,c:GRAY});
-  pdf.fit(ops,meta.ref||"—",c3,py+38,CW*0.30-18,{f:"bold",s:11,c:NAVY,min:7.5});
+  pdf.text(ops,"CĂTRE",c1,py+20,{f:"bold",s:7,c:C.GRA});
+  pdf.fit(ops,(meta.catre||"—").toUpperCase(),c1,py+38,CW*0.48-30,{f:"bold",s:11,c:C.TIT,min:7.5});
+  pdf.text(ops,"DATA",c2,py+20,{f:"bold",s:7,c:C.GRA});
+  pdf.text(ops,meta.dateRO||"—",c2,py+38,{f:"bold",s:11,c:C.TIT});
+  pdf.text(ops,"REFERINȚĂ",c3,py+20,{f:"bold",s:7,c:C.GRA});
+  pdf.fit(ops,meta.ref||"—",c3,py+38,CW*0.30-18,{f:"bold",s:11,c:C.TIT,min:7.5});
 
   // title
   var title=mode==="import"?"DATORIE VAMALĂ DE PLATĂ":"DESCHIDERE GARANȚIE IZOLATĂ";
-  pdf.text(ops,title,PW/2,244,{f:"bold",s:19,c:NAVY,align:"center"});
+  pdf.text(ops,title,PW/2,248,{f:"bold",s:19,c:C.TIT,align:"center"});
   var sub1="pentru partida de marfă identificată cu ";
   var sub2=meta.ref||"—";
   var s1w=tw(sub1,"reg",9.5),s2w=tw(sub2,"bold",9.5);
   var sx=(PW-s1w-s2w)/2;
-  pdf.text(ops,sub1,sx,264,{s:9.5,c:GRAY});
-  pdf.text(ops,sub2,sx+s1w,264,{f:"bold",s:9.5,c:NAVY2});
+  pdf.text(ops,sub1,sx,268,{s:9.5,c:C.GRA});
+  pdf.text(ops,sub2,sx+s1w,268,{f:"bold",s:9.5,c:C.SUB});
 
-  var y=300;
+  var y=304;
   if(mode==="import"){
     y=amountCard(pdf,ops,y,"TAXE VAMALE",groupInt(c.totDuty)+" RON","RO14 TREZ 4212 0170 1010 1XXX")+14;
     y=amountCard(pdf,ops,y,"TVA (21%)",groupInt(c.tva)+" RON","RO27 TREZ 42120 A 100102XTVA")+14;
-    // total band
     var th=48;
-    pdf.rect(ops,M,y,CW,th,{fill:NAVY,r:12});
-    pdf.text(ops,"TOTAL DATORIE VAMALĂ",M+22,y+30,{f:"bold",s:11.5,c:[1,1,1]});
-    pdf.text(ops,groupInt(c.total)+" RON",PW-M-22,y+31,{f:"bold",s:18,c:[0.624,0.816,1],align:"right"});
+    pdf.rect(ops,M,y,CW,th,{fill:C.TOTB,r:12});
+    pdf.text(ops,"TOTAL DATORIE VAMALĂ",M+22,y+30,{f:"bold",s:11.5,c:C.WHT});
+    pdf.text(ops,groupInt(c.total)+" RON",PW-M-22,y+31,{f:"bold",s:18,c:C.TOTAMT,align:"right"});
     y+=th+26;
   }else{
     y=amountCard(pdf,ops,y,"TAXĂ VAMALĂ (GARANȚIE)",groupInt(c.totDuty)+" RON","RO57 TREZ 4215 0820 3X00 7967")+26;
   }
 
-  // customs office info
-  pdf.text(ops,"Biroul Vamal Otopeni Călători",M,y+6,{f:"bold",s:10,c:DARK});
+  pdf.text(ops,"Biroul Vamal Otopeni Călători",M,y+6,{f:"bold",s:10,c:C.TXT});
   var cuiLine=mode==="import"
     ?"CUI BV: 4266898 (necesar pe ordinul de plată)"
     :"CUI: 4266898 (necesar pe ordinul de plată)  ·  Banca Trezorerie Ilfov";
-  pdf.text(ops,cuiLine,M,y+22,{s:9.5,c:DARK});
+  pdf.text(ops,cuiLine,M,y+22,{s:9.5,c:C.TXT});
   if(mode!=="import"){
-    pdf.text(ops,"Pe ordinul de plată se menționează: „Deschidere Garantie Izolata RO4266898”",M,y+38,{s:9.5,c:DARK});
+    pdf.text(ops,"Pe ordinul de plată se menționează: „Deschidere Garantie Izolata RO4266898”",M,y+38,{s:9.5,c:C.TXT});
   }
 
-  /* ---------- annex ---------- */
   if(meta.annex){
     buildAnnex(pdf,c,mode,meta);
   }
@@ -542,26 +619,25 @@ function buildAnnex(pdf,c,mode,meta){
 
   function annexHeader(ops,first){
     pageChrome(pdf,ops);
-    var lw=64,lh=lw*279/437;
-    pdf.image(ops,M,26,lw,lh);
-    pdf.text(ops,"ANEXĂ — DETALIU CALCUL",PW-M,44,{f:"bold",s:14,c:NAVY,align:"right"});
-    pdf.text(ops,(meta.ref?meta.ref+"  ·  ":"")+(meta.dateRO||""),PW-M,60,{s:8.5,c:GRAY,align:"right"});
-    pdf.line(ops,M,84,PW-M,84,{c:LINEC,lw:0.8});
-    var y=100;
+    pdf.logo(ops,M,28,60);
+    pdf.text(ops,"ANEXĂ — DETALIU CALCUL",PW-M,46,{f:"bold",s:14,c:C.TIT,align:"right"});
+    pdf.text(ops,(meta.ref?meta.ref+"  ·  ":"")+(meta.dateRO||""),PW-M,62,{s:8.5,c:C.GRA,align:"right"});
+    pdf.line(ops,M,88,PW-M,88,{c:C.LIN,lw:0.8});
+    var y=104;
     if(first){
       var cur=usedCurrencies(c,meta);
       if(cur.length){
-        pdf.text(ops,"Curs valutar:  "+cur.map(function(k){return "1 "+k+" = "+meta.rates[k]+" RON";}).join("   ·   "),M,y,{s:8.5,c:GRAY});
+        pdf.text(ops,"Curs valutar:  "+cur.map(function(k){return "1 "+k+" = "+meta.rates[k]+" RON";}).join("   ·   "),M,y,{s:8.5,c:C.GRA});
         y+=16;
       }
     }
     return y+4;
   }
   function headerRow(ops,y){
-    pdf.rect(ops,M,y,CW,20,{fill:NAVY,r:5});
+    pdf.rect(ops,M,y,CW,20,{fill:C.TBH,r:5});
     cols.forEach(function(cc,i){
       var x=cc.a==="r"?xs[i+1]-6:xs[i]+6;
-      pdf.text(ops,cc.t,x,y+13.5,{f:"bold",s:6.6,c:[1,1,1],align:cc.a==="r"?"right":"left"});
+      pdf.text(ops,cc.t,x,y+13.5,{f:"bold",s:6.6,c:C.WHT,align:cc.a==="r"?"right":"left"});
     });
     return y+20;
   }
@@ -576,19 +652,18 @@ function buildAnnex(pdf,c,mode,meta){
       y=annexHeader(ops,false);
       y=headerRow(ops,y);
     }
-    if(ix%2===1)pdf.rect(ops,M,y,CW,rh,{fill:ZEBRA});
-    function cell(k,txt,bold,color,dy,size){
+    if(ix%2===1)pdf.rect(ops,M,y,CW,rh,{fill:C.ZEB});
+    function cell(k,txt,bold,color){
       var i=cols.findIndex(function(cc){return cc.k===k;});
       if(i<0)return;
       var cc=cols[i],x=cc.a==="r"?xs[i+1]-6:xs[i]+6;
-      pdf.fit(ops,txt,cc.a==="r"?x:x,y+(dy||16.5),cc.w-10,{f:bold?"bold":"reg",s:size||8,c:color||DARK,align:cc.a==="r"?"right":"left",min:6});
+      pdf.fit(ops,txt,x,y+16.5,cc.w-10,{f:bold?"bold":"reg",s:8,c:color||C.TXT,align:cc.a==="r"?"right":"left",min:6});
     }
-    cell("idx",String(ix+1),false,GRAY);
-    // marfa: title + (hs · qty × price) on two lines
+    cell("idx",String(ix+1),false,C.GRA);
     var xM=xs[1]+6;
-    pdf.fit(ops,r.title||"—",xM,y+11.5,cols[1].w-10,{f:"bold",s:8,c:DARK,min:6.5});
+    pdf.fit(ops,r.title||"—",xM,y+11.5,cols[1].w-10,{f:"bold",s:8,c:C.TXT,min:6.5});
     var l2=(r.hs?("HS "+r.hs+"  ·  "):"")+money2(r.qty)+" × "+money2(r.unit)+" "+r.cur;
-    pdf.fit(ops,l2,xM,y+21.5,cols[1].w-10,{s:7,c:GRAY,min:6});
+    pdf.fit(ops,l2,xM,y+21.5,cols[1].w-10,{s:7,c:C.GRA,min:6});
     cell("goods",money2(r.goods));
     if(c.hasTr)cell("tr",money2(r.trRON));
     if(c.hasAs)cell("as",money2(r.asRON));
@@ -598,17 +673,15 @@ function buildAnnex(pdf,c,mode,meta){
     if(imp)cell("tva",groupInt(r.tva),true);
     y+=rh;
   });
-  // totals row
   if(y+22>limit){ops=pdf.page();y=annexHeader(ops,false);y=headerRow(ops,y);}
-  pdf.rect(ops,M,y,CW,22,{fill:[0.914,0.933,0.957]});
-  pdf.line(ops,M,y,M+CW,y,{c:NAVY,lw:1});
+  pdf.rect(ops,M,y,CW,22,{fill:C.TOTR});
+  pdf.line(ops,M,y,M+CW,y,{c:C.TBH,lw:1});
   function tcell(k,txt){
     var i=cols.findIndex(function(cc){return cc.k===k;});
     if(i<0)return;
-    var x=xs[i+1]-6;
-    pdf.text(ops,txt,x,y+15,{f:"bold",s:8,c:NAVY,align:"right"});
+    pdf.text(ops,txt,xs[i+1]-6,y+15,{f:"bold",s:8,c:C.TIT,align:"right"});
   }
-  pdf.text(ops,"TOTAL",xs[1]+6,y+15,{f:"bold",s:8.5,c:NAVY});
+  pdf.text(ops,"TOTAL",xs[1]+6,y+15,{f:"bold",s:8.5,c:C.TIT});
   tcell("goods",money2(c.totGoods));
   if(c.hasTr)tcell("tr",money2(c.totTr));
   if(c.hasAs)tcell("as",money2(c.totAs));
@@ -616,14 +689,13 @@ function buildAnnex(pdf,c,mode,meta){
   tcell("duty",groupInt(c.totDuty));
   if(imp)tcell("tva",groupInt(c.tva));
   y+=40;
-  // summary
-  pdf.text(ops,"Valoarea statistică = valoare marfă + transport + asigurare (în RON). Taxa vamală și TVA (21% × (valoare statistică + taxă vamală))",M,y,{s:8,c:GRAY});
-  pdf.text(ops,"se rotunjesc la RON întreg pe fiecare articol (≥0,50 se rotunjește în sus), apoi se însumează.",M,y+12,{s:8,c:GRAY});
+  pdf.text(ops,"Valoarea statistică = valoare marfă + transport + asigurare (în RON). Taxa vamală și TVA (21% × (valoare statistică + taxă vamală))",M,y,{s:8,c:C.GRA});
+  pdf.text(ops,"se rotunjesc la RON întreg pe fiecare articol (≥0,50 se rotunjește în sus), apoi se însumează.",M,y+12,{s:8,c:C.GRA});
   y+=32;
   if(imp){
-    pdf.text(ops,"Taxe vamale: "+groupInt(c.totDuty)+" RON    ·    TVA: "+groupInt(c.tva)+" RON    ·    TOTAL DATORIE VAMALĂ: "+groupInt(c.total)+" RON",M,y,{f:"bold",s:10,c:NAVY});
+    pdf.text(ops,"Taxe vamale: "+groupInt(c.totDuty)+" RON    ·    TVA: "+groupInt(c.tva)+" RON    ·    TOTAL DATORIE VAMALĂ: "+groupInt(c.total)+" RON",M,y,{f:"bold",s:10,c:C.TIT});
   }else{
-    pdf.text(ops,"TAXĂ VAMALĂ (GARANȚIE): "+groupInt(c.totDuty)+" RON",M,y,{f:"bold",s:10,c:NAVY});
+    pdf.text(ops,"TAXĂ VAMALĂ (GARANȚIE): "+groupInt(c.totDuty)+" RON",M,y,{f:"bold",s:10,c:C.TIT});
   }
 }
 })();
@@ -689,7 +761,8 @@ function articleTemplate(i,a){
     +'<div class="field"><label>Denumire marfă</label>'
     +'<input type="text" class="a-title" placeholder="ex: Corpi iluminat LED" value="'+esc(a.title||"")+'"></div>'
     +'<div class="row2">'
-    +'<div class="field"><label>Cod HS</label>'
+    +'<div class="field"><div class="lbl-row"><label>Cod HS</label>'
+    +'<button type="button" class="taric" data-taric>TARIC ↗</button></div>'
     +'<input type="text" class="a-hs" inputmode="numeric" placeholder="ex: 94054039" value="'+esc(a.hs||"")+'"></div>'
     +'<div class="field"><label>Taxă vamală (%)</label>'
     +'<input type="text" class="a-duty" inputmode="decimal" placeholder="ex: 4,7" value="'+esc(a.duty||"")+'"></div>'
@@ -866,8 +939,24 @@ el("segActivity").addEventListener("click",function(e){
 });
 el("btnAdd").addEventListener("click",addArticle);
 el("articles").addEventListener("click",function(e){
-  var d=e.target.closest("[data-del]");
-  if(d)delArticle(parseInt(d.dataset.del,10));
+  var t=e.target.closest("[data-taric]");
+  if(t){
+    var card=t.closest(".article");
+    var code=(card.querySelector(".a-hs").value||"").replace(/\D/g,"");
+    var url;
+    if(code){
+      code=(code+"0000000000").slice(0,10);
+      var d=new Date();
+      var sim=d.getFullYear()+("0"+(d.getMonth()+1)).slice(-2)+("0"+d.getDate()).slice(-2);
+      url="https://ec.europa.eu/taxation_customs/dds2/taric/measures.jsp?Lang=ro&Taric="+code+"&SimDate="+sim;
+    }else{
+      url="https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp?Lang=ro";
+    }
+    window.open(url,"_blank");
+    return;
+  }
+  var d2=e.target.closest("[data-del]");
+  if(d2)delArticle(parseInt(d2.dataset.del,10));
 });
 ["trGlobal","asGlobal"].forEach(function(id){
   el(id).addEventListener("change",function(){syncCostFields();recalc();});
@@ -891,7 +980,8 @@ el("btnPrint").addEventListener("click",function(){
     var blob=buildPdf(c,state.mode,{
       catre:el("fCatre").value,data:el("fData").value,ref:el("fRef").value,
       annex:el("chkAnnex").checked,dateRO:dateRO(el("fData").value),
-      rates:{USD:el("rUSD").value,EUR:el("rEUR").value,GBP:el("rGBP").value}
+      rates:{USD:el("rUSD").value,EUR:el("rEUR").value,GBP:el("rGBP").value},
+      theme:currentTheme
     });
     var name=pdfFilename();
     pushHistory((state.mode==="import"?fmtI(c.total):fmtI(c.totDuty))+" RON");
@@ -915,6 +1005,27 @@ function downloadBlob(blob,name){
   setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},4000);
   toast("PDF descărcat: "+name);
 }
+
+/* ---------- theme ---------- */
+var currentTheme="light";
+function applyTheme(t){
+  currentTheme=t;
+  document.documentElement.setAttribute("data-theme",t);
+  el("btnTheme").textContent=t==="dark"?"☀":"☾";
+  var m=document.querySelector('meta[name="theme-color"]');
+  if(m)m.setAttribute("content",t==="dark"?"#0d1520":"#16283c");
+}
+(function(){
+  var t=null;
+  try{t=localStorage.getItem("calcTheme");}catch(e){}
+  if(!t)t=(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";
+  applyTheme(t);
+})();
+el("btnTheme").addEventListener("click",function(){
+  var t=currentTheme==="dark"?"light":"dark";
+  try{localStorage.setItem("calcTheme",t);}catch(e){}
+  applyTheme(t);
+});
 
 /* ---------- init ---------- */
 var today=new Date();
